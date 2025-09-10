@@ -93,3 +93,6 @@ D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\refint\RachieLib.dll
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.pdb
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.genruntimeconfig.cache
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\ref\RachieLib.dll
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.sourcelink.json
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\dlghh4ssrd-kgya2etzam.gz
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\jxgldjbnn2-xtxxf3hu2r.gz

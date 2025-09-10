@@ -1,0 +1,64 @@
+<!-- Add Book Modal -->
+<div id="addBookModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-amber-900">Add New Book</h2>
+            <button onclick="closeAddBookModal()" class="text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <p class="text-gray-600 mb-6">Add a book to your personal library collection.</p>
+
+        <!-- Book Form -->
+        <form id="addBookForm" asp-action="Add" asp-controller="Home" method="post" class="space-y-4">
+            <div class="space-y-2">
+                <label for="title" class="block text-amber-900">Title <span class="text-red-500">*</span></label>
+                <input type="text" id="title" name="title" required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                       placeholder="Enter book title">
+            </div>
+
+            <div class="space-y-2">
+                <label for="coverUrl" class="block text-amber-900">Cover Image URL</label>
+                <input type="url" id="coverUrl" name="coverUrl"
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                       placeholder="https://example.com/book-cover.jpg">
+                <p class="text-sm text-gray-500">Optional: Paste a URL to the book cover image</p>
+            </div>
+
+            <div class="space-y-2">
+                <label for="spineColor" class="block text-amber-900">Spine Color</label>
+                <select id="spineColor" name="spineColor"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <option value="">Choose spine color (random if not selected)</option>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="brown">Brown</option>
+                    <option value="purple">Purple</option>
+                </select>
+            </div>
+
+            <div class="space-y-2">
+                <label for="summary" class="block text-amber-900">Summary</label>
+                <textarea id="summary" name="summary" rows="4"
+                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                          placeholder="Enter a brief summary or description..."></textarea>
+            </div>
+
+            <div class="flex justify-end space-x-3 mt-6">
+                <button type="button" onclick="closeAddBookModal()"
+                        class="px-4 py-2 text-gray-600 hover:text-gray-800 transition">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 bg-amber-800 text-white rounded-md hover:bg-amber-700 transition">
+                    Add Book
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
