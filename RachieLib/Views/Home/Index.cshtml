@@ -1,0 +1,84 @@
+@model List<RachieLib.Models.Book>
+
+<div class="container mx-auto max-w-4xl p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center gap-3">
+            <div class="text-lg">📚</div>
+            <div>
+                <h1 class="text-xl font-semibold">My Library</h1>
+                <p class="text-sm text-gray-600">@Model.Count book@(Model.Count != 1 ? "s" : "") in your collection</p>
+            </div>
+        </div>
+        <a href="/Add" class="px-3 py-1.5 bg-amber-800 text-white rounded-lg hover:bg-amber-700 transition flex items-center gap-2">
+            <span class="font-bold text-lg">+</span>
+            <span>Add Book</span>
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <partial name="EmptyBookShelf" />
+    }
+    else
+    {
+
+        <!-- Visual Bookshelf -->
+        <div class="flex flex-col items-center mb-12">
+            <div class="relative w-full max-w-5xl">
+                <div class="h-40 w-full rounded-xl shadow-xl bg-gradient-to-b from-amber-700 via-amber-800 to-amber-900 border-b-8 border-amber-950 flex items-end px-8" style="position:relative;">
+                    <div class="absolute inset-0 opacity-10 pointer-events-none">
+                        <div class="h-full w-full bg-gradient-to-r from-transparent via-black/10 to-transparent transform -skew-y-1"></div>
+                        <div class="absolute top-0 h-full w-full bg-gradient-to-r from-transparent via-black/5 to-transparent transform skew-y-1"></div>
+                    </div>
+                    <div class="flex items-end h-36 w-full gap-0.5 z-10">
+                        @foreach (var book in Model)
+                        {
+                            var random = new System.Random(book.Title.GetHashCode() + book.ISBN.GetHashCode());
+                            int minWidth = 32, maxWidth = 44;
+                            int widthPx = minWidth + random.Next(maxWidth - minWidth + 1);
+                            string width = $"{widthPx}px";
+                            int minHeight = 120, maxHeight = 140;
+                            int heightPx = minHeight + random.Next(maxHeight - minHeight + 1);
+                            string height = $"{heightPx}px";
+                            string borderColor = $"rgba({random.Next(60,120)},{random.Next(40,80)},{random.Next(20,40)},0.7)";
+                            <div class="book-spine cursor-pointer transition-transform duration-200 hover:scale-105 flex flex-col items-center justify-end select-none shadow-lg rounded-md border-2"
+                                 style="width:@width; height:@height; margin-bottom:@(140-heightPx)px; border-color:@borderColor; background:rgba(0,0,0,0.04);"
+                                 onclick="location.href='@Url.Action("Details", "Home", new { id = book.ISBN })'">
+                                @if (!string.IsNullOrWhiteSpace(book.CoverImageUrl))
+                                {
+                                    <img src="@book.CoverImageUrl" alt="@book.Title cover" class="w-full h-full object-cover rounded-md border border-gray-300" style="max-width:100%; max-height:100%;" />
+                                }
+                                else
+                                {
+                                    var spineColor = !string.IsNullOrWhiteSpace(book.SpineColor) ? book.SpineColor : $"hsl({random.Next(0,360)},70%,45%)";
+                                    <div class="flex flex-col justify-between items-center w-full h-full rounded-md"
+                                         style="background:@spineColor;">
+                                        <span class="text-xs font-bold text-white whitespace-nowrap overflow-hidden text-ellipsis px-1 py-2" style="writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:0.1em;">
+                                            @book.Title
+                                        </span>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Centered Add Book Button -->
+        <div class="flex flex-col items-center mt-8">
+            <a href="/Add" class="inline-flex items-center px-5 py-2 bg-white border border-amber-900 text-amber-900 font-semibold rounded-lg shadow hover:bg-amber-50 transition">
+                <span class="text-xl mr-2">+</span> Add Another Book
+            </a>
+        </div>
+    }
+
+    <!-- Navigation Links -->
+    <div class="mt-4 space-x-4 text-blue-600 font-medium">
+        <a href="/Add">➕ Add Book</a>
+        <a href="/Search">🔍 Search</a>
+        <a href="/Remove">🗑️ Remove</a>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+D:\Code\RachieLib\bin\Debug\net9.0\RachieLib.exe
+D:\Code\RachieLib\bin\Debug\net9.0\RachieLib.deps.json
+D:\Code\RachieLib\bin\Debug\net9.0\RachieLib.runtimeconfig.json
+D:\Code\RachieLib\bin\Debug\net9.0\RachieLib.dll
+D:\Code\RachieLib\bin\Debug\net9.0\RachieLib.pdb
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.AssemblyInfoInputs.cache
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.AssemblyInfo.cs
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.csproj.CoreCompileInputs.cache
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.dll
+D:\Code\RachieLib\obj\Debug\net9.0\refint\RachieLib.dll
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.pdb
+D:\Code\RachieLib\obj\Debug\net9.0\RachieLib.genruntimeconfig.cache
+D:\Code\RachieLib\obj\Debug\net9.0\ref\RachieLib.dll

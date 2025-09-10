@@ -1,0 +1,27 @@
+@model RachieLib.Models.Book
+<h2 class="text-2xl font-bold mb-4">Add New Book</h2>
+<form method="post" class="space-y-4 max-w-md bg-white p-6 rounded-lg shadow">
+    <div>
+        <label class="block font-semibold mb-1">Title *</label>
+        <input name="Title" class="w-full border rounded px-3 py-2" placeholder="Enter book title" required />
+    </div>
+    <div>
+        <label class="block font-semibold mb-1">Author *</label>
+        <input name="Author" class="w-full border rounded px-3 py-2" placeholder="Enter author name" required />
+    </div>
+    <div>
+        <label class="block font-semibold mb-1">ISBN *</label>
+        <input name="ISBN" class="w-full border rounded px-3 py-2" placeholder="Enter ISBN" required />
+    </div>
+    <div>
+        <label class="block font-semibold mb-1">Cover Image URL</label>
+        <input name="CoverImageUrl" class="w-full border rounded px-3 py-2" placeholder="https://example.com/book-cover.jpg" />
+        <span class="text-xs text-gray-500">Optional: Paste a URL to the book cover image</span>
+    </div>
+    <div>
+        <label class="block font-semibold mb-1">Spine Color</label>
+        <input name="SpineColor" class="w-full border rounded px-3 py-2" placeholder="#4F46E5 or 'indigo' (optional)" />
+        <span class="text-xs text-gray-500">Optional: Choose spine color (random if not selected)</span>
+    </div>
+    <button type="submit" class="w-full bg-amber-800 text-white py-2 rounded hover:bg-amber-700 transition">Add Book</button>
+</form>

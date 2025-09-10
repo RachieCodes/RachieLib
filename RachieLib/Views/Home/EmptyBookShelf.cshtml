@@ -1,0 +1,19 @@
+@{
+    var onAddBookUrl = Url.Action("Add", "Home");
+}
+
+<div class="flex flex-col items-center justify-center w-full">
+    <div class="relative w-full">
+        <!-- Empty bookshelf -->
+        <div class="h-32 w-full rounded-lg bg-gradient-to-b from-amber-700 to-amber-800 shadow-lg flex items-end px-4 overflow-hidden relative">
+            <!-- Shelf edge -->
+            <div class="absolute bottom-0 left-0 right-0 h-3 rounded-b-xl shadow-inner bg-gradient-to-t from-amber-950/80 to-transparent"></div>
+        </div>
+    </div>
+    <div class="mt-6 text-center">
+        <a href="@onAddBookUrl" class="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 transition">
+            <span class="text-lg font-medium">+</span>
+            Add Another Book
+        </a>
+    </div>
+</div>

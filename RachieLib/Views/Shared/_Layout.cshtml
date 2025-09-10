@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]RachieLib</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bookshelf': {
+                            wood: '78, 52, 46',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/css">
+        body {
+            background-color: #f8f9fa;
+        }
+        .book-spine {
+            animation: slideUp 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @@keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="min-h-screen">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
