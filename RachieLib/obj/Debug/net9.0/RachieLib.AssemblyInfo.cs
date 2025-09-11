@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RachieLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36fa64f7ac9df628c32981b81dd2c45ffe7e74d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29e935097a4efde99d1e20d51bfa1b98d442c2f5")]
 [assembly: System.Reflection.AssemblyProductAttribute("RachieLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RachieLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

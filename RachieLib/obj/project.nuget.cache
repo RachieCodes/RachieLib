@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7LFjakO/vVo=",
+  "dgSpecHash": "sA5xgbs4WVQ=",
   "success": true,
   "projectFilePath": "D:\\Code\\RachieLib\\RachieLib\\RachieLib.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Rache\\.nuget\\packages\\system.net.http.json\\9.0.9\\system.net.http.json.9.0.9.nupkg.sha512"
+  ],
   "logs": []
 }

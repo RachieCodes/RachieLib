@@ -1,3 +1,4 @@
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.csproj.AssemblyReference.cache
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\rpswa.dswa.cache.json
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.GeneratedMSBuildEditorConfig.editorconfig
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.AssemblyInfoInputs.cache
@@ -6,6 +7,7 @@ D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.csproj.CoreCompileInputs.
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.MvcApplicationPartsAssemblyInfo.cache
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.RazorAssemblyInfo.cache
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.RazorAssemblyInfo.cs
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.sourcelink.json
 D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\appsettings.Development.json
 D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\appsettings.json
 D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\RachieLib.staticwebassets.runtime.json
@@ -15,6 +17,7 @@ D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\RachieLib.deps.json
 D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\RachieLib.runtimeconfig.json
 D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\RachieLib.dll
 D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\RachieLib.pdb
+D:\Code\RachieLib\RachieLib\bin\Debug\net9.0\System.Net.Http.Json.dll
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\rjimswa.dswa.cache.json
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -23,6 +26,8 @@ D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\scopedcss\bundle\RachieLib.styles.c
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\scopedcss\projectbundle\RachieLib.bundle.scp.css
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\7wlbicm9j0-b9sayid5wm.gz
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\baptmj4pmx-61n19gt1b8.gz
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\dlghh4ssrd-kgya2etzam.gz
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\jxgldjbnn2-xtxxf3hu2r.gz
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\lc8dsaag4n-bqjiyaj88i.gz
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\durs3a6yh8-c2jlpeoesf.gz
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\azo5y5lyki-erw9l3u2r3.gz
@@ -88,11 +93,9 @@ D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\staticwebassets.build.json
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\staticwebassets.development.json
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.csproj.Up2Date
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.dll
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\refint\RachieLib.dll
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.pdb
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.genruntimeconfig.cache
 D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\ref\RachieLib.dll
-D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\RachieLib.sourcelink.json
-D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\dlghh4ssrd-kgya2etzam.gz
-D:\Code\RachieLib\RachieLib\obj\Debug\net9.0\compressed\jxgldjbnn2-xtxxf3hu2r.gz

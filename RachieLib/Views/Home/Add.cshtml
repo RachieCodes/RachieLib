@@ -1,27 +1,226 @@
 @model RachieLib.Models.Book
-<h2 class="text-2xl font-bold mb-4">Add New Book</h2>
-<form method="post" class="space-y-4 max-w-md bg-white p-6 rounded-lg shadow">
-    <div>
-        <label class="block font-semibold mb-1">Title *</label>
-        <input name="Title" class="w-full border rounded px-3 py-2" placeholder="Enter book title" required />
+
+<div class="container mx-auto max-w-4xl p-6">
+    <h2 class="text-2xl font-bold mb-6">Add New Book</h2>
+    
+    <!-- Search Section -->
+    <div class="max-w-2xl bg-white p-6 rounded-lg shadow">
+        <div class="relative">
+            <label class="block font-semibold mb-1">Search for a Book</label>
+            <div class="relative">
+                <input type="text" id="searchInput" 
+                       class="w-full border rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500" 
+                       placeholder="Start typing a book title..." 
+                       autocomplete="off" />
+                <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                    <div id="searchSpinner" class="hidden animate-spin rounded-full h-5 w-5 border-2 border-amber-800 border-t-transparent"></div>
+                </div>
+            </div>
+            
+            <!-- Dropdown Results -->
+            <div id="searchDropdown" class="hidden absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                <!-- Loading State -->
+                <div id="loadingState" class="hidden p-3">
+                    <div class="flex items-center gap-2 text-amber-700">
+                        <div class="animate-spin rounded-full h-4 w-4 border-2 border-amber-800 border-t-transparent"></div>
+                        <span>Searching for books...</span>
+                    </div>
+                </div>
+
+                <!-- No Results Message -->
+                <div id="noResults" class="hidden p-4 text-amber-700 text-sm">
+                    No books found. Try adjusting your search terms.
+                </div>
+
+                <!-- Results List -->
+                <div id="searchResults" class="divide-y divide-gray-100">
+                    <!-- Results will be inserted here -->
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label class="block font-semibold mb-1">Author *</label>
-        <input name="Author" class="w-full border rounded px-3 py-2" placeholder="Enter author name" required />
+
+    <!-- Manual Entry Section -->
+    <div class="mt-8 max-w-2xl bg-white p-6 rounded-lg shadow">
+        <h3 class="font-semibold mb-4">Can't find your book?</h3>
+        <form method="post" action="@Url.Action("Add", "Home")" class="space-y-4">
+            <div>
+                <label class="block font-semibold mb-1">Title *</label>
+                <input name="title" class="w-full border rounded px-3 py-2" required />
+            </div>
+            <div>
+                <label class="block font-semibold mb-1">Author</label>
+                <input name="author" class="w-full border rounded px-3 py-2" />
+            </div>
+            <button type="submit" class="px-4 py-2 bg-amber-800 text-white rounded hover:bg-amber-700 transition">
+                Add Manually
+            </button>
+        </form>
     </div>
-    <div>
-        <label class="block font-semibold mb-1">ISBN *</label>
-        <input name="ISBN" class="w-full border rounded px-3 py-2" placeholder="Enter ISBN" required />
-    </div>
-    <div>
-        <label class="block font-semibold mb-1">Cover Image URL</label>
-        <input name="CoverImageUrl" class="w-full border rounded px-3 py-2" placeholder="https://example.com/book-cover.jpg" />
-        <span class="text-xs text-gray-500">Optional: Paste a URL to the book cover image</span>
-    </div>
-    <div>
-        <label class="block font-semibold mb-1">Spine Color</label>
-        <input name="SpineColor" class="w-full border rounded px-3 py-2" placeholder="#4F46E5 or 'indigo' (optional)" />
-        <span class="text-xs text-gray-500">Optional: Choose spine color (random if not selected)</span>
-    </div>
-    <button type="submit" class="w-full bg-amber-800 text-white py-2 rounded hover:bg-amber-700 transition">Add Book</button>
-</form>
+</div>
+
+@section Scripts {
+    <script>
+        let searchTimeout;
+        const searchInput = document.getElementById('searchInput');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const searchResults = document.getElementById('searchResults');
+        const noResults = document.getElementById('noResults');
+        const loadingState = document.getElementById('loadingState');
+        const searchSpinner = document.getElementById('searchSpinner');
+        let selectedIndex = -1;
+        let currentResults = [];
+
+        function showDropdown() {
+            searchDropdown.classList.remove('hidden');
+        }
+
+        function hideDropdown() {
+            searchDropdown.classList.add('hidden');
+            selectedIndex = -1;
+        }
+
+        function selectResult(index) {
+            // Remove previous selection
+            const items = searchResults.querySelectorAll('.search-result');
+            items.forEach(item => item.classList.remove('bg-amber-50'));
+            
+            if (index >= 0 && index < items.length) {
+                selectedIndex = index;
+                const selectedItem = items[index];
+                selectedItem.classList.add('bg-amber-50');
+                selectedItem.scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        searchInput.addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const query = e.target.value.trim();
+            
+            if (query.length < 2) {
+                hideDropdown();
+                return;
+            }
+
+            showDropdown();
+            searchSpinner.classList.remove('hidden');
+            loadingState.classList.remove('hidden');
+            noResults.classList.add('hidden');
+            searchResults.classList.add('hidden');
+            
+            searchTimeout = setTimeout(async () => {
+                try {
+                    const response = await fetch('/Search/Books', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ query })
+                    });
+
+                    const books = await response.json();
+                    currentResults = books;
+                    
+                    searchSpinner.classList.add('hidden');
+                    loadingState.classList.add('hidden');
+                    
+                    if (books.length === 0) {
+                        noResults.classList.remove('hidden');
+                        searchResults.classList.add('hidden');
+                        return;
+                    }
+
+                    noResults.classList.add('hidden');
+                    searchResults.classList.remove('hidden');
+                    searchResults.innerHTML = books.map((book, index) => `
+                        <div class="search-result flex items-start gap-3 p-3 cursor-pointer hover:bg-amber-50 transition-colors"
+                             data-index="${index}"
+                             onclick="selectBook(${index})">
+                            ${book.thumbnailUrl 
+                                ? `<img src="${book.thumbnailUrl}" alt="${book.title}" class="w-12 h-16 object-cover rounded">`
+                                : `<div class="w-12 h-16 bg-amber-100 rounded flex items-center justify-center text-xl">📚</div>`
+                            }
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-amber-900 truncate">${book.title}</h4>
+                                <p class="text-sm text-amber-700 truncate">by ${book.author}</p>
+                                ${book.isbn ? `<p class="text-xs text-amber-600 mt-0.5 truncate">ISBN: ${book.isbn}</p>` : ''}
+                            </div>
+                        </div>
+                    `).join('');
+
+                } catch (error) {
+                    console.error('Error searching books:', error);
+                    searchSpinner.classList.add('hidden');
+                    loadingState.classList.add('hidden');
+                    noResults.classList.remove('hidden');
+                    noResults.textContent = 'Error searching for books. Please try again.';
+                }
+            }, 300);
+        });
+
+        // Handle keyboard navigation
+        searchInput.addEventListener('keydown', function(e) {
+            const items = searchResults.querySelectorAll('.search-result');
+            
+            switch(e.key) {
+                case 'ArrowDown':
+                    e.preventDefault();
+                    selectResult(Math.min(selectedIndex + 1, items.length - 1));
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    selectResult(Math.max(selectedIndex - 1, 0));
+                    break;
+                case 'Enter':
+                    e.preventDefault();
+                    if (selectedIndex >= 0 && selectedIndex < currentResults.length) {
+                        selectBook(selectedIndex);
+                    }
+                    break;
+                case 'Escape':
+                    e.preventDefault();
+                    hideDropdown();
+                    break;
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchDropdown.contains(e.target) && e.target !== searchInput) {
+                hideDropdown();
+            }
+        });
+
+        // Function to handle book selection
+        function selectBook(index) {
+            const book = currentResults[index];
+            if (!book) return;
+
+            const form = document.createElement('form');
+            form.method = 'post';
+            form.action = '@Url.Action("Add", "Home")';
+
+            const titleInput = document.createElement('input');
+            titleInput.type = 'hidden';
+            titleInput.name = 'title';
+            titleInput.value = book.title;
+
+            const isbnInput = document.createElement('input');
+            isbnInput.type = 'hidden';
+            isbnInput.name = 'isbn';
+            isbnInput.value = book.isbn || '';
+
+            form.appendChild(titleInput);
+            form.appendChild(isbnInput);
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        // Show dropdown when focusing on input
+        searchInput.addEventListener('focus', function() {
+            if (searchInput.value.trim().length >= 2) {
+                showDropdown();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,57 @@
+@model RachieLib.Models.Book
+
+<div class="container mx-auto max-w-4xl p-6">
+    <!-- Back button -->
+    <a href="@Url.Action("Index", "Home")" class="inline-flex items-center gap-2 text-amber-800 hover:text-amber-700 mb-8">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Back to Library</span>
+    </a>
+
+    <!-- Main content -->
+    <div class="bg-white rounded-2xl shadow-xl p-8">
+        <div class="flex gap-8">
+            <!-- Book cover -->
+            <div class="w-64 h-80 bg-[#f8f5f0] rounded-lg shadow-md flex items-center justify-center">
+                <div class="text-6xl opacity-30">📖</div>
+            </div>
+
+            <!-- Book details -->
+            <div class="flex-1">
+                <h1 class="text-4xl font-bold text-amber-950 mb-2">@Model.Title</h1>
+                <div class="text-amber-800 mb-6">
+                    <span class="inline-flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Added on @(Model.DateAdded.ToString("MMMM d, yyyy"))
+                    </span>
+                </div>
+
+                <!-- Summary section -->
+                <div class="mt-8">
+                    <h2 class="text-xl font-semibold text-amber-950 mb-4">Summary</h2>
+                    <div class="text-amber-800">
+                        @(string.IsNullOrEmpty(Model.Summary) ? "No summary available." : Model.Summary)
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div class="mt-8 flex items-center gap-4">
+                    <button class="px-6 py-2 bg-amber-800 text-white rounded-lg hover:bg-amber-700 transition flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                        <span>Start Reading</span>
+                    </button>
+                    <button class="px-4 py-2 text-amber-800 hover:text-amber-700 transition">
+                        Add to Favorites
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
